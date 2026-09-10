@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Short Drama</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+background:#0f0f0f;
+color:#fff;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+/* ================= HEADER ================= */
+
+header{
+height:68px;
+background:#181818;
+display:flex;
+align-items:center;
+gap:12px;
+padding:0 16px;
+position:sticky;
+top:0;
+z-index:100;
+border-bottom:1px solid #292929;
+}
+
+.logoArea{
+display:flex;
+align-items:center;
+gap:9px;
+cursor:pointer;
+white-space:nowrap;
+}
+
+.logoImg{
+width:43px;
+height:43px;
+border-radius:50%;
+object-fit:cover;
+display:none;
+}
+
+.logoText{
+font-size:22px;
+font-weight:bold;
+color:#ff3030;
+}
+
+.search{
+flex:1;
+max-width:650px;
+padding:12px 18px;
+border-radius:25px;
+border:1px solid #444;
+background:#242424;
+color:#fff;
+outline:none;
+}
+
+.adminBtn{
+background:#292929;
+color:#fff;
+border:0;
+padding:11px 17px;
+border-radius:22px;
+cursor:pointer;
+font-size:15px;
+}
+
+/* ================= NAV ================= */
+
+nav{
+display:flex;
+gap:8px;
+padding:11px 16px;
+background:#151515;
+border-bottom:1px solid #292929;
+overflow-x:auto;
+}
+
+.navBtn{
+background:#292929;
+color:#fff;
+border:0;
+padding:10px 19px;
+border-radius:20px;
+cursor:pointer;
+white-space:nowrap;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:20px;
+}
+
+.hero{
+padding:35px 25px;
+border-radius:17px;
+background:linear-gradient(135deg,#292929,#151515);
+margin-bottom:30px;
+}
+
+.hero h1{
+margin:0 0 10px;
+font-size:36px;
+}
+
+.hero p{
+color:#bbb;
+font-size:16px;
+}
+
+/* ================= TITLE BOARD ================= */
+
+.titleBoard{
+margin:0 0 25px;
+padding:18px 20px;
+border-left:5px solid #ff3030;
+background:linear-gradient(90deg,#202020,#151515);
+border-radius:10px;
+}
+
+.titleBoard h2{
+margin:0;
+font-size:25px;
+}
+
+.titleBoard p{
+margin:7px 0 0;
+color:#999;
+font-size:13px;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fill,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:#181818;
+border-radius:14px;
+overflow:hidden;
+cursor:pointer;
+transition:.2s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+background:#222;
+}
+
+.thumbnail{
+height:160px;
+background:#222;
+position:relative;
+overflow:hidden;
+}
+
+.thumbnail img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.play{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:57px;
+height:57px;
+border-radius:50%;
+background:#ff0000;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:23px;
+box-shadow:0 4px 18px #000;
+}
+
+.info{
+padding:14px;
+}
+
+.info h3{
+margin:0 0 8px;
+font-size:17px;
+line-height:1.35;
+}
+
+.muted{
+color:#999;
+font-size:13px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.94);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:15px;
+z-index:1000;
+}
+
+.hidden{
+display:none!important;
+}
+
+.box{
+width:100%;
+max-width:900px;
+max-height:94vh;
+overflow:auto;
+background:#1b1b1b;
+border:1px solid #444;
+border-radius:16px;
+padding:20px;
+}
+
+.box input,
+.box select,
+.box textarea{
+width:100%;
+padding:13px;
+margin:7px 0;
+background:#101010;
+color:#fff;
+border:1px solid #444;
+border-radius:8px;
+outline:none;
+}
+
+.box textarea{
+height:90px;
+resize:vertical;
+}
+
+.btn{
+border:0;
+border-radius:8px;
+padding:11px 17px;
+cursor:pointer;
+font-weight:bold;
+margin:4px;
+}
+
+.red{
+background:#ff3030;
+color:#fff;
+}
+
+.green{
+background:#16803c;
+color:#fff;
+}
+
+.blue{
+background:#1769aa;
+color:#fff;
+}
+
+.gray{
+background:#444;
+color:#fff;
+}
+
+.danger{
+background:#c62828;
+color:#fff;
+}
+
+.row{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+}
+
+/* ================= PLAYER ================= */
+
+.videoPlayer{
+width:100%;
+height:min(70vh,520px);
+background:#000;
+border:0;
+display:block;
+}
+
+/* ================= DASHBOARD ================= */
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(150px,1fr));
+gap:12px;
+margin:15px 0;
+}
+
+.stat{
+background:#292929;
+border:1px solid #3a3a3a;
+border-radius:12px;
+padding:18px;
+text-align:center;
+}
+
+.statIcon{
+font-size:30px;
+}
+
+.statNumber{
+font-size:28px;
+font-weight:bold;
+margin:6px;
+}
+
+.statTitle{
+color:#aaa;
+font-size:13px;
+}
+
+.videoStat{
+background:#242424;
+border-radius:10px;
+padding:13px;
+margin:9px 0;
+}
+
+.videoStatTitle{
+font-weight:bold;
+font-size:16px;
+}
+
+.empty{
+padding:40px;
+text-align:center;
+color:#999;
+}
+
+hr{
+border:0;
+border-top:1px solid #333;
+margin:24px 0;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+header{
+height:61px;
+padding:0 8px;
+gap:7px;
+}
+
+.logoText{
+font-size:17px;
+}
+
+.logoImg{
+width:35px;
+height:35px;
+}
+
+.search{
+min-width:65px;
+font-size:12px;
+}
+
+.adminBtn{
+padding:9px 11px;
+font-size:12px;
+}
+
+.container{
+padding:12px;
+}
+
+.hero{
+padding:25px 19px;
+}
+
+.hero h1{
+font-size:28px;
+}
+
+.titleBoard{
+padding:15px;
+}
+
+.titleBoard h2{
+font-size:21px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.thumbnail{
+height:190px;
+}
+
+.videoPlayer{
+height:55vh;
+}
+
+.box{
+padding:15px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<div
+class="logoArea"
+onclick="openAdminLogin()">
+
+<img
+id="logoImg"
+class="logoImg">
+
+<div
+id="logoText"
+class="logoText">
+Short Drama
+</div>
+
+</div>
+
+
+<input
+id="search"
+class="search"
+placeholder="Search dramas..."
+oninput="renderVideos()">
+
+
+<button
+class="adminBtn"
+onclick="openAdminLogin()">
+
+Admin
+
+</button>
+
+</header>
+
+
+<!-- ================= NAV ================= -->
+
+<nav>
+
+<button
+class="navBtn"
+onclick="changeCategory('All')">
+
+Home
+
+</button>
+
+<button
+class="navBtn"
+onclick="changeCategory('Series')">
+
+Series
+
+</button>
+
+<button
+class="navBtn"
+onclick="changeCategory('Movies')">
+
+Movies
+
+</button>
+
+<button
+class="navBtn"
+onclick="changeCategory('Shorts')">
+
+Shorts
+
+</button>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+<section class="hero">
+
+<h1 id="heroTitle">
+Welcome to Short Drama
+</h1>
+
+<p>
+Watch your favourite short dramas, series, movies and shorts.
+</p>
+
+<p class="muted">
+🎬 सभी videos public हैं।
+</p>
+
+</section>
+
+
+<!-- TITLE BOARD -->
+
+<div class="titleBoard">
+
+<h2 id="titleBoardText">
+Latest Short Dramas
+</h2>
+
+<p id="titleBoardSub">
+New videos and dramas
+</p>
+
+</div>
+
+
+<h2 id="sectionTitle">
+Latest Videos
+</h2>
+
+
+<div
+id="videoGrid"
+class="grid">
+</div>
+
+
+</main>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+id="modal"
+class="modal hidden">
+</div>
+
+
+<script>
+
+/* =====================================================
+DATABASE
+===================================================== */
+
+const DB_KEY="SHORT_DRAMA_DATABASE";
+
+const SETTINGS_KEY="SHORT_DRAMA_SETTINGS";
+
+const STATS_KEY="SHORT_DRAMA_STATS";
+
+
+let database=
+JSON.parse(
+localStorage.getItem(DB_KEY)
+)
+||
+{
+videos:[]
+};
+
+
+let settings=
+JSON.parse(
+localStorage.getItem(SETTINGS_KEY)
+)
+||
+{
+name:"Short Drama",
+logo:"",
+titleBoard:"Latest Short Dramas",
+titleBoardSub:"New videos and dramas"
+};
+
+
+let stats=
+JSON.parse(
+localStorage.getItem(STATS_KEY)
+)
+||
+{
+visits:0,
+views:0,
+videoViews:{}
+};
+
+
+let currentCategory="All";
+
+
+/* =====================================================
+SAVE
+===================================================== */
+
+function saveAll(){
+
+localStorage.setItem(
+DB_KEY,
+JSON.stringify(database)
+);
+
+localStorage.setItem(
+SETTINGS_KEY,
+JSON.stringify(settings)
+);
+
+localStorage.setItem(
+STATS_KEY,
+JSON.stringify(stats)
+);
+
+}
+
+
+/* =====================================================
+SAFE
+===================================================== */
+
+function safe(text){
+
+return String(text||"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+YOUTUBE ID
+===================================================== */
+
+function getYouTubeId(url){
+
+if(!url)return null;
+
+url=url.trim();
+
+let match=url.match(
+/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/
+);
+
+return match ? match[1] : null;
+
+}
+
+
+/* =====================================================
+YOUTUBE THUMBNAIL
+===================================================== */
+
+function getYouTubeThumbnail(id){
+
+if(!id)return "";
+
+return
+"https://i.ytimg.com/vi/"
++
+id+
+"/hqdefault.jpg";
+
+}
+
+
+/* =====================================================
+AUTO YOUTUBE TITLE
+===================================================== */
+
+async function getYouTubeTitle(url){
+
+try{
+
+let response=
+await fetch(
+"https://www.youtube.com/oembed?url="
++
+encodeURIComponent(url)
++
+"&format=json"
+);
+
+if(!response.ok){
+
+throw new Error("Title unavailable");
+
+}
+
+let data=
+await response.json();
+
+return data.title || "";
+
+}
+
+catch(error){
+
+return "";
+
+}
+
+}
+
+
+/* =====================================================
+SETTINGS
+===================================================== */
+
+function applySettings(){
+
+let name=
+settings.name ||
+"Short Drama";
+
+
+document.title=name;
+
+
+document.getElementById(
+"logoText"
+).innerText=name;
+
+
+document.getElementById(
+"heroTitle"
+).innerText=
+"Welcome to "+name;
+
+
+document.getElementById(
+"titleBoardText"
+).innerText=
+settings.titleBoard ||
+"Latest Short Dramas";
+
+
+document.getElementById(
+"titleBoardSub"
+).innerText=
+settings.titleBoardSub ||
+"New videos and dramas";
+
+
+let logo=
+document.getElementById(
+"logoImg"
+);
+
+
+if(settings.logo){
+
+logo.src=settings.logo;
+
+logo.style.display="block";
+
+}
+
+else{
+
+logo.style.display="none";
+
+}
+
+}
+
+
+/* =====================================================
+VISIT
+===================================================== */
+
+function countVisit(){
+
+stats.visits++;
+
+saveAll();
+
+}
+
+
+/* =====================================================
+CATEGORY
+===================================================== */
+
+function changeCategory(category){
+
+currentCategory=
+category;
+
+renderVideos();
+
+}
+
+
+/* =====================================================
+RENDER VIDEOS
+===================================================== */
+
+function renderVideos(){
+
+let search=
+document
+.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+
+let videos=
+database.videos.filter(
+video=>{
+
+let categoryMatch=
+currentCategory==="All"
+||
+video.category===
+currentCategory;
+
+
+let searchMatch=
+(video.title||"")
+.toLowerCase()
+.includes(search);
+
+
+return
+categoryMatch &&
+searchMatch;
+
+});
+
+
+document.getElementById(
+"sectionTitle"
+).innerText=
+currentCategory==="All"
+?
+"Latest Videos"
+:
+currentCategory;
+
+
+let html="";
+
+
+videos.forEach(
+video=>{
+
+let youtubeId=
+getYouTubeId(video.url);
+
+
+let thumbnail=
+youtubeId
+?
+getYouTubeThumbnail(youtubeId)
+:
+video.thumbnail;
+
+
+html+=`
+
+<div
+class="card"
+onclick="watchVideo('${safe(video.id)}')">
+
+
+<div class="thumbnail">
+
+
+${
+thumbnail
+?
+`
+<img
+src="${safe(thumbnail)}"
+alt="${safe(video.title)}">
+`
+:
+`
+<div
+style="
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:55px">
+🎬
+</div>
+`
+}
+
+
+<div class="play">
+▶
+</div>
+
+
+</div>
+
+
+<div class="info">
+
+<h3>
+${safe(video.title)}
+</h3>
+
+
+<p class="muted">
+${safe(video.category)}
+</p>
+
+
+<p class="muted">
+👀
+${stats.videoViews[video.id]||0}
+Views
+</p>
+
+
+</div>
+
+
+</div>
+
+`;
+
+});
+
+
+if(!html){
+
+html=`
+
+<div class="empty">
+
+<h3>
+अभी कोई video नहीं है
+</h3>
+
+<p>
+Admin Panel से YouTube video add करें।
+</p>
+
+</div>
+
+`;
+
+}
+
+
+document.getElementById(
+"videoGrid"
+).innerHTML=
+html;
+
+}
+
+
+/* =====================================================
+WATCH VIDEO
+===================================================== */
+
+function watchVideo(id){
+
+let video=
+database.videos.find(
+v=>v.id===id
+);
+
+
+if(!video)return;
+
+
+/* VIEW */
+
+stats.views++;
+
+
+if(!stats.videoViews[id]){
+
+stats.videoViews[id]=0;
+
+}
+
+
+stats.videoViews[id]++;
+
+
+saveAll();
+
+
+let url=
+String(video.url||"").trim();
+
+
+let youtubeId=
+getYouTubeId(url);
+
+
+let player="";
+
+
+if(youtubeId){
+
+let embed=
+"https://www.youtube.com/embed/"
++
+youtubeId
++
+"?autoplay=1&rel=0";
+
+
+player=`
+
+<iframe
+class="videoPlayer"
+src="${safe(embed)}"
+title="${safe(video.title)}"
+allow="autoplay; encrypted-media; picture-in-picture"
+allowfullscreen>
+</iframe>
+
+`;
+
+}
+
+
+else if(url){
+
+player=`
+
+<video
+class="videoPlayer"
+controls
+playsinline
+autoplay>
+
+<source
+src="${safe(url)}">
+
+Your browser does not support video.
+
+</video>
+
+`;
+
+}
+
+
+else{
+
+player=`
+
+<div
+style="
+height:350px;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center">
+
+<h2>
+🎬 Video Link Missing
+</h2>
+
+</div>
+
+`;
+
+}
+
+
+openModal(`
+
+<div class="box">
+
+<h2>
+${safe(video.title)}
+</h2>
+
+${player}
+
+<p>
+${safe(video.description)}
+</p>
+
+<p class="muted">
+👀 Total Views:
+${stats.videoViews[id]||0}
+</p>
+
+<button
+class="btn gray"
+onclick="closeModal()">
+
+Close
+
+</button>
+
+</div>
+
+`);
+
+}
+
+
+/* =====================================================
+ADMIN LOGIN
+===================================================== */
+
+function openAdminLogin(){
+
+openModal(`
+
+<div class="box">
+
+<h2>
+👑 Admin Login
+</h2>
+
+<p class="muted">
+Website owner के लिए।
+</p>
+
+
+<input
+id="adminPassword"
+type="password"
+placeholder="Admin Password"
+onkeydown="
+if(event.key==='Enter')
+checkAdmin()
+">
+
+
+<div class="row">
+
+<button
+class="btn red"
+onclick="checkAdmin()">
+
+Login
+
+</button>
+
+
+<button
+class="btn gray"
+onclick="closeModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+`);
+
+}
+
+
+/* =====================================================
+PASSWORD
+===================================================== */
+
+function checkAdmin(){
+
+let password=
+document
+.getElementById("adminPassword")
+.value;
+
+
+if(password!=="admin123"){
+
+alert(
+"Wrong Admin Password"
+);
+
+return;
+
+}
+
+
+adminPanel();
+
+}
+
+
+/* =====================================================
+ADMIN DASHBOARD
+===================================================== */
+
+function adminPanel(){
+
+openModal(`
+
+<div class="box">
+
+
+<h2>
+👑 ${safe(settings.name)}
+Dashboard
+</h2>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div class="statIcon">
+👥
+</div>
+
+<div class="statNumber">
+${stats.visits}
+</div>
+
+<div class="statTitle">
+Website Visits
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="statIcon">
+👀
+</div>
+
+<div class="statNumber">
+${stats.views}
+</div>
+
+<div class="statTitle">
+Video Views
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="statIcon">
+🎬
+</div>
+
+<div class="statNumber">
+${database.videos.length}
+</div>
+
+<div class="statTitle">
+Total Videos
+</div>
+
+</div>
+
+
+</div>
+
+
+<hr>
+
+
+<!-- WEBSITE SETTINGS -->
+
+<h3>
+⚙️ Website Settings
+</h3>
+
+
+<input
+id="websiteName"
+value="${safe(settings.name)}"
+placeholder="Website Name">
+
+
+<input
+id="titleBoard"
+value="${safe(settings.titleBoard)}"
+placeholder="Title Board">
+
+
+<input
+id="titleBoardSub"
+value="${safe(settings.titleBoardSub)}"
+placeholder="Title Board Subtitle">
+
+
+<label class="muted">
+अपना Logo चुनें
+</label>
+
+
+<input
+id="logoFile"
+type="file"
+accept="image/*">
+
+
+<button
+class="btn blue"
+onclick="saveWebsiteSettings()">
+
+💾 Save Website Settings
+
+</button>
+
+
+<hr>
+
+
+<!-- ADD YOUTUBE -->
+
+<h3>
+➕ Add YouTube Video
+</h3>
+
+
+<input
+id="videoURL"
+placeholder="यहाँ YouTube Video Link डालें">
+
+
+<input
+id="videoTitle"
+placeholder="Title automatic आएगा">
+
+
+<select
+id="videoCategory">
+
+<option value="Shorts">
+Shorts
+</option>
+
+<option value="Series">
+Series
+</option>
+
+<option value="Movies">
+Movies
+</option>
+
+</select>
+
+
+<textarea
+id="videoDescription"
+placeholder="Description optional">
+</textarea>
+
+
+<button
+class="btn green"
+onclick="addYouTubeVideo()">
+
+➕ Add YouTube Video
+
+</button>
+
+
+<p class="muted">
+
+💡 YouTube link डालते ही Thumbnail और Title automatic लाने की कोशिश होगी।
+
+</p>
+
+
+<hr>
+
+
+<h3>
+📺 All Videos
+</h3>
+
+
+<div id="adminVideos">
+</div>
+
+
+<hr>
+
+
+<button
+class="btn danger"
+onclick="resetStats()">
+
+♻️ Reset Views
+
+</button>
+
+
+<button
+class="btn gray"
+onclick="closeModal()">
+
+Close Dashboard
+
+</button>
+
+
+</div>
+
+`);
+
+
+renderAdminVideos();
+
+}
+
+
+/* =====================================================
+ADD YOUTUBE
+===================================================== */
+
+async function addYouTubeVideo(){
+
+let url=
+document
+.getElementById("videoURL")
+.value
+.trim();
+
+
+let manualTitle=
+document
+.getElementById("videoTitle")
+.value
+.trim();
+
+
+let category=
+document
+.getElementById("videoCategory")
+.value;
+
+
+let description=
+document
+.getElementById("videoDescription")
+.value
+.trim();
+
+
+if(!url){
+
+alert(
+"YouTube link डालें"
+);
+
+return;
+
+}
+
+
+let youtubeId=
+getYouTubeId(url);
+
+
+if(!youtubeId){
+
+alert(
+"सही YouTube link डालें"
+);
+
+return;
+
+}
+
+
+/* AUTO TITLE */
+
+let autoTitle=
+await getYouTubeTitle(url);
+
+
+let finalTitle=
+autoTitle
+||
+manualTitle
+||
+"YouTube Drama";
+
+
+/* AUTO THUMBNAIL */
+
+let thumbnail=
+getYouTubeThumbnail(
+youtubeId
+);
+
+
+let video={
+
+id:
+"video_"+Date.now(),
+
+title:
+finalTitle,
+
+category:
+category,
+
+url:
+url,
+
+youtubeId:
+youtubeId,
+
+thumbnail:
+thumbnail,
+
+description:
+description
+
+};
+
+
+database.videos.push(
+video
+);
+
+
+saveAll();
+
+
+alert(
+"✅ Video Added!\n\nTitle और Thumbnail automatic set हो गया।"
+);
+
+
+renderVideos();
+
+adminPanel();
+
+}
+
+
+/* =====================================================
+ADMIN VIDEO LIST
+===================================================== */
+
+function renderAdminVideos(){
+
+let box=
+document.getElementById(
+"adminVideos"
+);
+
+
+if(!box)return;
+
+
+if(!database.videos.length){
+
+box.innerHTML=`
+
+<p class="muted">
+अभी कोई video नहीं है।
+</p>
+
+`;
+
+return;
+
+}
+
+
+let html="";
+
+
+database.videos.forEach(
+video=>{
+
+html+=`
+
+<div class="videoStat">
+
+<div class="videoStatTitle">
+
+${safe(video.title)}
+
+</div>
+
+
+<p class="muted">
+
+${safe(video.category)}
+
+<br>
+
+👀 Views:
+${stats.videoViews[video.id]||0}
+
+</p>
+
+
+<button
+class="btn danger"
+onclick="
+deleteVideo('${safe(video.id)}')
+">
+
+Delete
+
+</button>
+
+</div>
+
+`;
+
+});
+
+
+box.innerHTML=
+html;
+
+}
+
+
+/* =====================================================
+DELETE
+===================================================== */
+
+function deleteVideo(id){
+
+if(
+!confirm(
+"क्या आप इस video को delete करना चाहते हैं?"
+)
+){
+
+return;
+
+}
+
+
+database.videos=
+database.videos.filter(
+v=>v.id!==id
+);
+
+
+delete stats.videoViews[id];
+
+
+saveAll();
+
+
+renderVideos();
+
+adminPanel();
+
+}
+
+
+/* =====================================================
+SAVE WEBSITE SETTINGS
+===================================================== */
+
+function saveWebsiteSettings(){
+
+let name=
+document
+.getElementById("websiteName")
+.value
+.trim();
+
+
+let titleBoard=
+document
+.getElementById("titleBoard")
+.value
+.trim();
+
+
+let titleBoardSub=
+document
+.getElementById("titleBoardSub")
+.value
+.trim();
+
+
+if(name){
+
+settings.name=name;
+
+}
+
+
+if(titleBoard){
+
+settings.titleBoard=
+titleBoard;
+
+}
+
+
+if(titleBoardSub){
+
+settings.titleBoardSub=
+titleBoardSub;
+
+}
+
+
+let file=
+document
+.getElementById("logoFile")
+.files[0];
+
+
+if(file){
+
+let reader=
+new FileReader();
+
+
+reader.onload=
+function(){
+
+settings.logo=
+reader.result;
+
+saveAll();
+
+applySettings();
+
+alert(
+"✅ Name + Title Board + Logo Save हो गया!"
+);
+
+adminPanel();
+
+};
+
+
+reader.readAsDataURL(file);
+
+}
+
+else{
+
+saveAll();
+
+applySettings();
+
+alert(
+"✅ Website Settings Save हो गई!"
+);
+
+adminPanel();
+
+}
+
+}
+
+
+/* =====================================================
+RESET STATS
+===================================================== */
+
+function resetStats(){
+
+if(
+!confirm(
+"सभी Visits और Views को 0 करना है?"
+)
+){
+
+return;
+
+}
+
+
+stats={
+visits:0,
+views:0,
+videoViews:{}
+};
+
+
+saveAll();
+
+
+adminPanel();
+
+renderVideos();
+
+}
+
+
+/* =====================================================
+MODAL
+===================================================== */
+
+function openModal(content){
+
+let modal=
+document.getElementById(
+"modal"
+);
+
+
+modal.innerHTML=
+content;
+
+
+modal.classList.remove(
+"hidden"
+);
+
+}
+
+
+function closeModal(){
+
+let modal=
+document.getElementById(
+"modal"
+);
+
+
+modal.classList.add(
+"hidden"
+);
+
+
+modal.innerHTML="";
+
+}
+
+
+/* =====================================================
+ESC
+===================================================== */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Escape"){
+
+closeModal();
+
+}
+
+});
+
+
+/* =====================================================
+START
+===================================================== */
+
+applySettings();
+
+countVisit();
+
+renderVideos();
+
+</script>
+
+</body>
+</html>
